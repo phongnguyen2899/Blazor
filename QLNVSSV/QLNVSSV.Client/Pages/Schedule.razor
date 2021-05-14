@@ -1,0 +1,100 @@
+﻿@page "/Schedule"
+<h3>Schedule</h3>
+
+<QLNVSSV.Client.Components.FilterCommon SearchCallback="LoadDataCalBack"></QLNVSSV.Client.Components.FilterCommon>
+<table style="margin-top:20px" class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Họ Tên</th>
+            <th scope="col">Tên vị trí</th>
+            <th scope="col">Chức danh</th>
+            <th scope="col">Email</th>
+            <th scope="col">Số điện thoại</th>
+            <th scope="col">Thời gian PV</th>
+            <th scope="col">Địa điểm PV</th>
+            <th scope="col">Ghi chú</th>
+            <th scope="col">Hành động</th>
+        </tr>
+    </thead>
+    <tbody id="tablebody">
+        @foreach (var item in listEmployee)
+        {
+            <tr id="row_@item.EmployeeId">
+                <td scope="col">@item.EmployeeId</td>
+                <td scope="col">@item.EmployeeName</td>
+                <td scope="col">@item.PositionName</td>
+                <td scope="col">@item.TitleName</td>
+                <td scope="col">@item.Email</td>
+                <td scope="col">@item.PhoneNumber</td>
+                <td scope="col" id="trthoigian">
+                    @{
+                        var time = DateTime.Parse("0001-01-01 00:00:00.0000000");
+                        if (item.InterviewTime != time)
+                        {
+                            @item.InterviewTime.ToString("dd/MM/yyyy hh:mm tt")
+                        }
+                    }
+                </td>
+                <td scope="col" id="trdiadiem">@item.InterviewAddress</td>
+                <td scope="col" id="trghichu">@item.Note</td>
+                <td scope="col">
+                    <button @onclick="()=>Show(item.EmployeeId)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Đặt Lịch
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<QLNVSSV.Client.Components.Pagination SelectedPage="SelectedPage" MetaData="MetaData" Spread="3"></QLNVSSV.Client.Components.Pagination>
+
+<div class="modal fade @ModalClass" style="display:@DissplayModal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Người phỏng vấn</label>
+                    <select id="interviewer" class="form-control form-select" aria-label="Default select example"  @bind="employee.InterviewerId">
+                        @foreach (var item in listInterviewer)
+                        {
+                            <option class="option_interviewer" value="@item.EmployeeId">@item.EmployeeName</option>
+
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Ngày phỏng vấn</label>
+                    <input id="interviewTime" class="form-control" type="datetime-local" @bind-value="@employee.InterviewTime">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Địa điểm</label>
+                    <select id="interviewAddress" class="form-control form-select" aria-label="Default select example" @bind="employee.InterviewAddress">
+                        <option value="HN">HN</option>
+                        <option value="HUE">Hue</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="Close">Close</button>
+                <button  type="button" class="btn btn-primary" @onclick="Imsposed">Tạo</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+
+}

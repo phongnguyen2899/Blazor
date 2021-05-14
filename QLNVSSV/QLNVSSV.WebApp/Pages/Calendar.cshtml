@@ -1,0 +1,247 @@
+﻿@page
+@model QLNVSSV.WebApp.Pages.CalendarModel
+@{
+}
+
+<link href="~/Bootsrap/bootstrap-4.0.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/calendar/fullcalendar-5.6.0/lib/main.css" rel="stylesheet" />
+<script src="~/calendar/fullcalendar-5.6.0/lib/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="~/calendar/fullcalendar-5.6.0/lib/locales-all.js"></script>
+<script src="~/calendar/fullcalendar-5.6.0/lib/locales/vi.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="~/Bootsrap/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
+<style type="text/css">
+</style>
+<style>
+    .form {
+        margin: 10px auto;
+        width: 50%;
+    }
+
+    .loadding {
+        position: fixed;
+        top: 0;
+        width: 50px;
+        top: 50%;
+        left: 50%;
+        z-index: 999;
+    }
+
+    .fullscreen {
+        background: #ccc;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        opacity: 0.3;
+        z-index: 999;
+    }
+</style>
+
+<div id="loaddata">
+    <div onload="LoadSchedule()" id='calendar'></div>
+    <div class="loader"></div>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" value="">Người phỏng vấn</label>
+                        <select id="nguoipv" class="form-control form-select" name="snguoipv">
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" value="">Ngày phỏng vấn</label>
+                        <input id="fthoigianpv" class="form-control" type="datetime-local" value="">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="delete" type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                    <button id="update" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="fullscreen" class="fullscreen"></div>
+<img id="loadding" class="loadding" src="~/Img/cupertino_activity_indicator.gif" />
+
+<script>
+
+    var full = document.getElementById('fullscreen');
+    var load = document.getElementById('loadding');
+
+    function endLoadding() {
+        full.style.display = 'none'
+        load.style.display = 'none'
+    }
+    function loadding() {
+        full.style.display = 'block'
+        load.style.display = 'block'
+    }
+
+    loadding();
+    var idtarget;
+
+    //ds interviewer
+    var listinterview = []
+
+    //load data cho modal
+    function Loaddatamodal() {
+        fetch('http://localhost:37919/api/Employee/GetEmployeeStatus/13')
+            .then(response => response.json())
+            .then(data => {
+                var obj = JSON.parse(JSON.stringify(data))
+                var nguoipvElement = document.getElementById('nguoipv');
+                var html = "";
+                for (var i = 0; i < obj.length; i++) {
+                    html += `<option class="interviewItem" value="${obj[i].employeeId}">${obj[i].employeeName}</option>`
+
+                    listinterview.push({
+                        id: obj[i].employeeId,
+                        ten: obj[i].employeeName,
+                        email: obj[i].email
+                    });
+                }
+                nguoipvElement.innerHTML = html
+            })
+    }
+    var events = []
+
+    //Get data va render
+    function GETDATA(callback) {
+
+        fetch('http://localhost:37919/api/Employee/GetAll')
+            .then(response => response.json())
+            .then(data => {
+                var obj = JSON.parse(JSON.stringify(data))
+
+                for (var i = 0; i < obj.length; i++) {
+                    if (obj[i].note != null && obj[i].interviewTime != null) {
+                        events.push({
+                            id: obj[i].employeeId,
+                            title: obj[i].note,
+                            start: obj[i].interviewTime,
+                            groupId: obj[i].interviewerId
+                        })
+                    }
+
+                }
+                callback(events)
+                endLoadding();
+            })
+    }
+
+
+    function draw(data) {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'timeGridWeek',
+            initialDate: new Date(),
+            locale: 'vi',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: data,
+            eventClick: function (info) {
+
+                idtarget = info.event.id
+                console.log(info.event.id)
+                var mydate = new Date(info.event.start).toISOString();
+                $('#fthoigianpv').val(mydate.substring(0, mydate.length - 1));
+                setinterview(info.event.groupId)
+                $('#exampleModalCenter').modal();
+            }
+        });
+        calendar.render();
+    }
+
+
+    GETDATA(draw);
+
+    function setinterview(value) {
+        var interviewItem = document.getElementsByClassName('interviewItem')
+        for (var i = 0; i < interviewItem.length; i++) {
+            if (interviewItem[i].value == value) {
+                interviewItem[i].selected = 'selected'
+            }
+        }
+        console.log(interviewItem)
+    }
+
+    Loaddatamodal();
+
+
+
+    var btnupdate = document.getElementById('update');
+    var del = document.getElementById('delete')
+
+
+    btnupdate.onclick = function (e) {
+
+
+
+        var newnguoipv = $("#nguoipv").val();
+        var newngaypv = $("#fthoigianpv").val();
+        var data = {
+            InterviewerId: newnguoipv,
+            InterviewTime: newngaypv,
+            EmployeeId: idtarget,
+            InterviewAddress: ""
+        }
+        console.log(data)
+        fetch('http://localhost:37919/api/Employee/UpdateSchedule', {
+            method: 'PUT', // or 'PUT'
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+            .then(data => {
+                var obj = JSON.parse(JSON.stringify(data))
+                console.log(obj)
+                location.reload();
+            })
+    }
+
+    del.onclick = function (e) {
+
+        var data = {
+            InterviewerId: 0,
+            InterviewTime: "0001-01-01 00:00:00.0000000",
+            EmployeeId: idtarget,
+            InterviewAddress: ""
+        }
+        console.log(data)
+        fetch('http://localhost:37919/api/Employee/UpdateSchedule', {
+            method: 'PUT', // or 'PUT'
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+            .then(data => {
+                var obj = JSON.parse(JSON.stringify(data))
+                console.log(obj)
+                location.reload();
+            })
+    }
+
+</script>

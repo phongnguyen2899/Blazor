@@ -1,0 +1,33 @@
+﻿@page "/Test"
+@inject NavigationManager _navigation
+<style>
+    .router-pagging-table {
+        padding: 1em;
+    }
+
+        .router-pagging-table input {
+            margin-bottom: 1em;
+        }
+</style>
+
+<h3>AntLibrary</h3>
+
+<QLNVSSV.Client.Components.SearchingComponent OnSearchChanged="Calback"></QLNVSSV.Client.Components.SearchingComponent>
+<div class="router-pagging-table">
+    
+    <Table DataSource="@listEmployee"
+           PageIndex="@pageIndex"
+           PageSize="@pageSize"
+           Total="Convert.ToInt32(serviceResponse.Data)"
+           OnPageIndexChange="changeOnPage"
+           >
+
+        <Column @bind-Field="@context.EmployeeId"></Column>
+        <Column @bind-Field="@context.EmployeeName"></Column>
+    </Table>
+</div>
+
+@code {
+
+    
+}

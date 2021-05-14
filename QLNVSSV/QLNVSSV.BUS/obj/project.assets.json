@@ -1,0 +1,153 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "MySqlConnector/1.3.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/MySqlConnector.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/MySqlConnector.dll": {}
+        }
+      },
+      "QLNVSSV.DATA/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "MySqlConnector": "1.3.7",
+          "QLNVSSV.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/QLNVSSV.DATA.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/QLNVSSV.DATA.dll": {}
+        }
+      },
+      "QLNVSSV.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/QLNVSSV.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/QLNVSSV.Models.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MySqlConnector/1.3.7": {
+      "sha512": "cceT5xpMPgInT8sVnmhZ62aouEux6dWJjOaMSsYW0TmLvK+gwG0eKw8J9NklTw+Q5Cch9Sd04OBux3GSITvABw==",
+      "type": "package",
+      "path": "mysqlconnector/1.3.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net45/MySqlConnector.dll",
+        "lib/net45/MySqlConnector.xml",
+        "lib/net461/MySqlConnector.dll",
+        "lib/net461/MySqlConnector.xml",
+        "lib/net471/MySqlConnector.dll",
+        "lib/net471/MySqlConnector.xml",
+        "lib/net5.0/MySqlConnector.dll",
+        "lib/net5.0/MySqlConnector.xml",
+        "lib/netcoreapp2.1/MySqlConnector.dll",
+        "lib/netcoreapp2.1/MySqlConnector.xml",
+        "lib/netcoreapp3.1/MySqlConnector.dll",
+        "lib/netcoreapp3.1/MySqlConnector.xml",
+        "lib/netstandard1.3/MySqlConnector.dll",
+        "lib/netstandard1.3/MySqlConnector.xml",
+        "lib/netstandard2.0/MySqlConnector.dll",
+        "lib/netstandard2.0/MySqlConnector.xml",
+        "lib/netstandard2.1/MySqlConnector.dll",
+        "lib/netstandard2.1/MySqlConnector.xml",
+        "logo.png",
+        "mysqlconnector.1.3.7.nupkg.sha512",
+        "mysqlconnector.nuspec"
+      ]
+    },
+    "QLNVSSV.DATA/1.0.0": {
+      "type": "project",
+      "path": "../QLNVSSV.DATA/QLNVSSV.DATA.csproj",
+      "msbuildProject": "../QLNVSSV.DATA/QLNVSSV.DATA.csproj"
+    },
+    "QLNVSSV.Models/1.0.0": {
+      "type": "project",
+      "path": "../QLNVSSV.ViewModels/QLNVSSV.Models.csproj",
+      "msbuildProject": "../QLNVSSV.ViewModels/QLNVSSV.Models.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "QLNVSSV.DATA >= 1.0.0",
+      "QLNVSSV.Models >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\PhongNV\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\PhongNV\\Documents\\Phong\\SSV\\QLNVSSV\\QLNVSSV.BUS\\QLNVSSV.BUS.csproj",
+      "projectName": "QLNVSSV.BUS",
+      "projectPath": "C:\\Users\\PhongNV\\Documents\\Phong\\SSV\\QLNVSSV\\QLNVSSV.BUS\\QLNVSSV.BUS.csproj",
+      "packagesPath": "C:\\Users\\PhongNV\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\PhongNV\\Documents\\Phong\\SSV\\QLNVSSV\\QLNVSSV.BUS\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\PhongNV\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "projectReferences": {
+            "C:\\Users\\PhongNV\\Documents\\Phong\\SSV\\QLNVSSV\\QLNVSSV.DATA\\QLNVSSV.DATA.csproj": {
+              "projectPath": "C:\\Users\\PhongNV\\Documents\\Phong\\SSV\\QLNVSSV\\QLNVSSV.DATA\\QLNVSSV.DATA.csproj"
+            },
+            "C:\\Users\\PhongNV\\Documents\\Phong\\SSV\\QLNVSSV\\QLNVSSV.ViewModels\\QLNVSSV.Models.csproj": {
+              "projectPath": "C:\\Users\\PhongNV\\Documents\\Phong\\SSV\\QLNVSSV\\QLNVSSV.ViewModels\\QLNVSSV.Models.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

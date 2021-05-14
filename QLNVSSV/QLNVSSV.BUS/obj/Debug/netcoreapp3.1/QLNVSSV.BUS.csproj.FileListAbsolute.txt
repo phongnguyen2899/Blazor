@@ -1,0 +1,14 @@
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\bin\Debug\netcoreapp3.1\QLNVSSV.BUS.deps.json
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\bin\Debug\netcoreapp3.1\QLNVSSV.BUS.dll
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\bin\Debug\netcoreapp3.1\QLNVSSV.BUS.pdb
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\bin\Debug\netcoreapp3.1\QLNVSSV.DATA.dll
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\bin\Debug\netcoreapp3.1\QLNVSSV.Models.dll
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\bin\Debug\netcoreapp3.1\QLNVSSV.DATA.pdb
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\bin\Debug\netcoreapp3.1\QLNVSSV.Models.pdb
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\obj\Debug\netcoreapp3.1\QLNVSSV.BUS.csprojAssemblyReference.cache
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\obj\Debug\netcoreapp3.1\QLNVSSV.BUS.AssemblyInfoInputs.cache
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\obj\Debug\netcoreapp3.1\QLNVSSV.BUS.AssemblyInfo.cs
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\obj\Debug\netcoreapp3.1\QLNVSSV.BUS.csproj.CoreCompileInputs.cache
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\obj\Debug\netcoreapp3.1\QLNVSSV.BUS.csproj.CopyComplete
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\obj\Debug\netcoreapp3.1\QLNVSSV.BUS.dll
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV.BUS\obj\Debug\netcoreapp3.1\QLNVSSV.BUS.pdb

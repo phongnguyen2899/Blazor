@@ -1,0 +1,40 @@
+﻿@page "/employee"
+<h3>Employee</h3>
+
+<table style="margin-top:20px" class="table">
+    <thead>
+        <tr>
+
+            <th scope="col">ID</th>
+            <th scope="col">Tên chức vụ</th>
+            <th scope="col">Tên vị trí</th>
+            <th scope="col">Tên NV</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Email</th>
+            <th scope="col">CV</th>
+            <th scope="col">Người Giới thiệu</th>
+            <th scope="col">Hành động</th>
+        </tr>
+    </thead>
+    <tbody id="tablebody">
+        
+        @if (listEmployee != null) { 
+            foreach (var item in listEmployee)
+            {
+                <tr>
+                    <td scope="col">@item.EmployeeId</td>
+                    <td scope="col">@item.PositionName</td>
+                    <td scope="col">@item.TitleName</td>
+                    <td scope="col">@item.EmployeeName</td>
+                    <td scope="col">@item.Address</td>
+                    <td scope="col">@item.Email</td>
+                    <td scope="col">@item.CV</td>
+                    <td scope="col">@item.PresenterName</td>
+                    <td scope="col">Hành động</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+<QLNVSSV.Server.Components.Pagination></QLNVSSV.Server.Components.Pagination>

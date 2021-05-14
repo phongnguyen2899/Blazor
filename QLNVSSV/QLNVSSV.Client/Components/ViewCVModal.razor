@@ -1,0 +1,87 @@
+﻿
+@inject NotificationService _notice
+
+<div class="modal fade @ModalClass" style="display:@DissplayModal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div style="max-width:50% !important;height:100%" class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="height:80%;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe style="width:100%;height:100%;" src="http://localhost:37919/Image/@Cv" title=""></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal" @onclick="()=>UpdateStatus(1)">Loại</button>
+                <button type="button" class="btn btn-outline-primary" @onclick="()=>UpdateStatus(2)">Duyệt</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public int EmployeeId { get; set; }
+
+    public string ModalClass { get; set; }
+
+    public string DissplayModal { get; set; } = "none";
+
+    private string Cv { get; set; }
+
+
+    [Parameter]
+    public EventCallback Reload { get; set; }
+
+    public void Open()
+    {
+        DissplayModal = "block;";
+        ModalClass = "show";
+        StateHasChanged();
+    }
+    public void Close()
+    {
+        DissplayModal = "none";
+        ModalClass = "";
+        StateHasChanged();
+    }
+    public async Task Show(string cv)
+    {
+        Console.WriteLine(cv);
+        Cv = cv;
+        Open();
+    }
+
+    public async Task UpdateStatus(int status)
+    {
+
+        string url = $"http://localhost:37919/api/Employee/UpdateStatus/{EmployeeId}/{status}";
+        using (var client = new HttpClient())
+        {
+            HttpResponseMessage response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+            }
+        }
+        Close();
+        await NoticeWithIcon(NotificationType.Success);
+
+        Reload.InvokeAsync();
+    }
+
+    private async Task NoticeWithIcon(NotificationType type)
+    {
+        await _notice.Open(new NotificationConfig()
+        {
+            Message = "Duyệt thành công",
+            Description = "",
+            NotificationType = type
+        });
+    }
+
+}

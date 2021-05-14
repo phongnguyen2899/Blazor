@@ -1,0 +1,138 @@
+﻿
+
+<style>
+    .header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .header {
+        margin-top: 10px;
+        display: flex;
+        height: 38px;
+        align-items: center;
+    }
+
+    .search_header {
+        display: flex;
+    }
+        .search_header .btn_search {
+            background-color: #4e92df;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            height: 100%;
+            margin: 0;
+            padding: 10px 20px;
+        }
+
+        .search_header input:first-child {
+            width: 200px;
+            margin-right: 10px;
+            outline: none;
+            padding-left: 10px;
+            border: 1px solid #4e92df;
+        }
+
+    .link_btn {
+        background-color: #4e92df;
+        font-size: 16px;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 2px;
+    }
+
+    .btn_search:hover {
+        background: #2e7dd6;
+        transition: 0,4s;
+    }
+
+    .link_btn:hover {
+        background: #2e7dd6;
+        transition: 0,4s;
+    }
+
+    .view:hover {
+        color: #2e7dd6;
+    }
+
+    .form-search {
+        display: flex;
+    }
+
+    .form-group {
+        margin-right: 20px;
+    }
+</style>
+<div style="height:200px;margin-top:20px;">
+    <EditForm Model="pageParameters" OnSubmit="SearchAction">
+        <div class="form-search">
+            <div class="form-group">
+                <input @bind-value="pageParameters.Search" type="text" name="EmployeeName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập tên nhân viên">
+            </div>
+
+            <button style="height:38px;" type="submit" class="btn btn-success">Tìm kiếm nâng cao</button>
+        </div>
+
+        <br />
+
+        <div class="form-search">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Vị trí</label>
+                <select class="form-control" name="Position" @bind="pageParameters.position">
+                    <option value="0">Chọn vị trí</option>
+                    @foreach (var item in listPosition)
+                    {
+                        <option value="@item.PositionId">@item.PositionName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Chức danh</label>
+                <select class="form-control" name="Title" @bind="pageParameters.title">
+                    <option value="0">Chọn chức vụ</option>
+                    @foreach (var item in listTitle)
+                    {
+                        <option value="@item.TitleId">@item.TitleName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Liên hệ</label>
+                <select class="form-control" name="Soliratity" @bind="pageParameters.solidarity">
+                    <option value="0">Chưa liên hệ</option>
+                    <option value="1">Liên hệ được</option>
+                    <option value="2">Không liên hệ được</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Từ</label>
+                <input type="date" class="form-control" id="exampleInputPassword1" name="Start" @bind="pageParameters.from">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Đến</label>
+                <input type="date" class="form-control" id="exampleInputPassword1" name="End" @bind="pageParameters.to">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Địa điểm</label>
+                <select class="form-control" name="InterviewAddress" @bind="pageParameters.interviewaddress">
+                    <option value="HN">Hà Nội</option>
+                    <option value="HUE">Huế</option>
+                </select>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-success">Tìm kiếm</button>
+        <button id="reset" type="button" class="btn btn-success">Đặt lại</button>
+
+    </EditForm>
+
+</div>
+
+@code {
+
+}

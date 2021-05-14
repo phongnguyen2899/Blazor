@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "J+yKeI8LU1H8XdS8OiH/vAWTv8lKZwjiOZBOHPQO2SGxGhF3ip9GFbiIIx4HdfGS7hW+FNeb2vbFxI3HSG8GDw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\PhongNV\\Documents\\Phong\\SSV\\QLNVSSV\\WebApplication1\\Server\\WebApplication1.Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PhongNV\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.server\\5.0.5\\microsoft.aspnetcore.components.webassembly.server.5.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}

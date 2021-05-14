@@ -1,0 +1,75 @@
+﻿@page "/Mailcontent"
+
+@inject NotificationService _notice
+
+<Spin Spinning=loading>
+    <h3>MailContent</h3>
+    <EditForm Model="mailContent" OnSubmit="Update">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Tiêu đề</label>
+            <select class="form-control" @onchange="changeItem">
+                @foreach (var item in listMail)
+                {
+                    <option value="@item.Id">@item.Title</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Nội dung</label>
+            <TextArea rows="4" class="form-control" @bind-Value="mailContent.Content">
+
+        </TextArea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
+</Spin>
+@code {
+    public QLNVSSV.Models.Modes.MailContent mailContent { get; set; } = new();
+
+    public List<QLNVSSV.Models.Modes.MailContent> listMail { get; set; } = new();
+
+    public bool loading { get; set; } = false;
+
+    void toggle(bool value) => loading = value;
+
+    protected override async Task OnInitializedAsync()
+    {
+        toggle(true);
+        listMail = await ApiIntergration.GetData<QLNVSSV.Models.Modes.MailContent>.GetList("http://localhost:37919/api/MailContent/GetAll");
+        mailContent = listMail[0];
+        toggle(false);
+    }
+    public void changeItem(ChangeEventArgs arg)
+    {
+        for (var i = 0; i < listMail.Count; i++)
+        {
+            if (Convert.ToInt32(arg.Value) == listMail[i].Id)
+            {
+                mailContent = listMail[i];
+                break;
+            }
+        }
+    }
+    public void Update()
+    {
+        toggle(true);
+        if (mailContent != null)
+        {
+            var rs = ApiIntergration.GetData<QLNVSSV.Models.Modes.MailContent>.Put("http://localhost:37919/api/MailContent", mailContent);
+        }
+        toggle(false);
+         NoticeWithIcon(NotificationType.Success);
+
+    }
+    private void  NoticeWithIcon(NotificationType type)
+    {
+        _notice.Open(new NotificationConfig()
+        {
+            Message = "Thành công",
+            Description = "",
+            NotificationType = type
+        });
+    }
+
+}

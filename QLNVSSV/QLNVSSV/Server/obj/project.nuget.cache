@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "gP01tnWJvYeijAj4Vqe5MA6e9sRO276Hm7b9jU2+0khn9Bb5/k/3Hxw+GAc2yJjvsZPgNm5onRg2Gynzxq7fgg==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\PhongNV\\Documents\\Phong\\SSV\\QLNVSSV\\QLNVSSV\\Server\\QLNVSSV.Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PhongNV\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.server\\5.0.5\\microsoft.aspnetcore.components.webassembly.server.5.0.5.nupkg.sha512",
+    "C:\\Users\\PhongNV\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.5\\microsoft.aspnetcore.http.features.5.0.5.nupkg.sha512",
+    "C:\\Users\\PhongNV\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\PhongNV\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Unable to find project information for 'C:\\Users\\PhongNV\\Documents\\Phong\\SSV\\QLNVSSV\\QLNVSSV\\Client\\QLNVSSV.Client.csproj'. If you are using Visual Studio, this may be because the project is unloaded or not part of the current solution so run a restore from the command-line. Otherwise, the project file may be invalid or missing targets required for restore.",
+      "libraryId": "C:\\Users\\PhongNV\\Documents\\Phong\\SSV\\QLNVSSV\\QLNVSSV\\Client\\QLNVSSV.Client.csproj",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
+}

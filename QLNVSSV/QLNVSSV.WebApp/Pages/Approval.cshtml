@@ -1,0 +1,230 @@
+﻿@page
+@model QLNVSSV.WebApp.Pages.ApprovalModel
+@{
+}
+
+<style>
+   
+
+    a {
+    }
+
+    body {
+    }
+
+   
+
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+   
+
+    .search {
+    }
+
+        .search input {
+        }
+
+        .search a {
+        }
+
+
+    .search_header {
+        display: flex;
+    }
+
+        .search_header .btn_search {
+            background-color: #4e92df;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            height: 100%;
+            margin: 0;
+            padding: 10px 20px;
+        }
+
+        .search_header input:first-child {
+            width: 200px;
+            margin-right: 10px;
+            outline: none;
+            padding-left: 10px;
+            border: 1px solid #4e92df;
+        }
+
+    .link_btn {
+        background-color: #4e92df;
+        font-size: 16px;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 2px;
+    }
+
+    
+    
+
+    .dowload {
+    }
+
+    .view:hover {
+        color: #2e7dd6;
+    }
+
+    .form-search {
+        display: flex;
+    }
+
+    .form-group {
+        margin-right: 20px;
+    }
+</style>
+
+<div style="height:200px;margin-top:20px;">
+    <form method="post">
+        <div class="form-search">
+            <div class="form-group">
+                <input type="text" name="EmployeeName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập tên nhân viên">
+            </div>
+
+            <button style="height:38px;" type="submit" class="btn btn-success">Tìm kiếm nâng cao</button>
+        </div>
+        <br />
+        <div class="form-search">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Vị trí</label>
+                <select class="form-control" name="Position">
+                    <option value="0">Chọn vị trí</option>
+                    @foreach (var item in Model.listPositions)
+                    {
+                        <option value="@item.PositionId">@item.PositionName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Chức danh</label>
+                <select class="form-control" name="Title">
+                    <option value="0">Chọn chức vụ</option>
+                    @foreach (var item in Model.listTitle)
+                    {
+                        <option value="@item.TitleId">@item.TitleName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Tìm kiếm</button>
+        <button id="reset" type="button" class="btn btn-success">Đặt lại</button>
+    </form>
+
+</div>
+
+
+<table class="table" style="margin-top:20px">
+    <thead>
+        <tr>
+
+            <th scope="col">ID</th>
+            <th scope="col">Tên chức vụ</th>
+            <th scope="col">Tên vị trí</th>
+            <th scope="col">Tên NV</th>
+            <th scope="col">Ngày sinh</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Email</th>
+            <th scope="col">CV</th>
+            <th scope="col">Người Giới thiệu</th>
+            <th scope="col">Hành động</th>
+        </tr>
+    </thead>
+    <tbody id="tablebody">
+        @foreach (var item in Model.employee)
+        {
+            <tr id="tr_@item.EmployeeId">
+                <th scope="row">@item.EmployeeId</th>
+                <td>@item.TitleName</td>
+                <td>@item.PositionName</td>
+                <td>@item.EmployeeName</td>
+                <td>@item.DateOfBirth</td>
+                <td>@item.Address</td>
+                <td>@item.Email</td>
+                <td><a href="http://localhost:37919/Image/">@item.CV</a></td>
+                <td>@item.PresenterName</td>
+                <td>
+                    @if (item.CV != null)
+                    {
+                        @if (item.CV.Split(".").Last() == "pdf")
+                        {
+                            <a title="Click để xem cv" id="bntduyet_@item.EmployeeId" onclick="redPDF(@item.EmployeeId)" class="btn btn-outline-primary" data-toggle="modal" data-book-id="@item.EmployeeId" data-pdf="@item.CV" data-target="#exampleModal">XemCV</a>
+
+                            <div id="ModalPDF">
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content" style="width:200%;height:700px">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div id="modal_body" class="modal-body">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" id="btn_@item.EmployeeId" onclick="updateStatus(null,1)" class="btn btn-outline-danger" data-dismiss="modal">Loại</button>
+                                                <button onclick="updateStatus(null,2)" type="button" class="btn btn-outline-success">Duyệt</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            var a = item.CV.Split(".").Last();
+                            <a class="btn btn-outline-primary" title="Click để tải cv" href="http://localhost:37919/api/Employee/Dowloadfile/@item.CV">Tải CV</a>
+                            <a onclick="updateStatus(@item.EmployeeId,2)" id="bntduyet_@item.EmployeeId" class="btn btn-outline-success">Duyệt</a>
+                            <a onclick="updateStatus(@item.EmployeeId,1)" id="bntduyet_@item.EmployeeId" class="btn btn-outline-danger">Loại</a>
+                        }
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+
+    var idtarget;
+    function redPDF(id) {
+        idtarget = id;
+        console.log(id)
+        var btn = document.getElementById("bntduyet_"+id+"");
+        $('#modal_body').html('<iframe style="width:100%;height:100%;" src="http://localhost:37919/Image/' + btn.getAttribute('data-pdf') + '" title=""></iframe>')
+    }
+
+    function updateStatus(id, status) {
+
+        if (id == null) {
+            var url = 'http://localhost:37919/api/Employee/UpdateStatus/' + idtarget + '/' + status + '';
+        }
+        else {
+            var url = 'http://localhost:37919/api/Employee/UpdateStatus/' + id + '/' + status + '';
+            idtarget=id
+        }
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                var tr = document.getElementById(`tr_${idtarget}`);
+                tr.style.display='none'
+            })
+
+    }
+
+</script>

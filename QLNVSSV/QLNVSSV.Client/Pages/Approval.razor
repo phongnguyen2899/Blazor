@@ -1,0 +1,63 @@
+﻿@page "/approval"
+
+@inject  NotificationService _notice
+<Spin Spinning="loading">
+    <h3>Approval</h3>
+    <QLNVSSV.Client.Components.Filter Reload="ReloadData"></QLNVSSV.Client.Components.Filter>
+
+    <table class="table" style="margin-top:20px">
+        <thead>
+            <tr>
+
+                <th scope="col">ID</th>
+                <th scope="col">Tên chức vụ</th>
+                <th scope="col">Tên vị trí</th>
+                <th scope="col">Tên NV</th>
+                <th scope="col">Ngày sinh</th>
+                <th scope="col">Địa chỉ</th>
+                <th scope="col">Email</th>
+                <th scope="col">CV</th>
+                <th scope="col">Người Giới thiệu</th>
+                <th scope="col">Hành động</th>
+            </tr>
+        </thead>
+        <tbody id="tablebody">
+            @foreach (var item in listEmployee)
+            {
+                <tr id="tr_@item.EmployeeId">
+                    <th scope="row">@item.EmployeeId</th>
+                    <td>@item.TitleName</td>
+                    <td>@item.PositionName</td>
+                    <td>@item.EmployeeName</td>
+                    <td>@item.DateOfBirth</td>
+                    <td>@item.Address</td>
+                    <td>@item.Email</td>
+                    <td><a href="http://localhost:37919/Image/">@item.CV</a></td>
+                    <td>@item.PresenterName</td>
+                    <td>
+                        @if (item.CV != null)
+                        {
+                            @if (item.CV.Split(".").Last() == "pdf")
+                            {
+                                <a title="Click để xem cv" id="bntduyet_@item.EmployeeId" @onclick="()=> { viewCVModal.Show(item.CV);eID = item.EmployeeId; }   " class="btn btn-outline-primary" data-toggle="modal" data-book-id="@item.EmployeeId" data-pdf="@item.CV" data-target="#exampleModal">XemCV</a>
+
+                            }
+                            else
+                            {
+                                var a = item.CV.Split(".").Last();
+                                <a class="btn btn-outline-primary" title="Click để tải cv" href="http://localhost:37919/api/Employee/Dowloadfile/@item.CV">Tải CV</a>
+                                <a @onclick="async()=> { await UpdateStatus(item.EmployeeId, 2); }" id="bntduyet_@item.EmployeeId" class="btn btn-outline-success">Duyệt</a>
+                                <a @onclick="async()=> { await UpdateStatus(item.EmployeeId, 1); }" id="bntduyet_@item.EmployeeId" class="btn btn-outline-danger">Loại</a>
+                            }
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <QLNVSSV.Client.Components.ViewCVModal EmployeeId="eID" Reload="Reload" @ref="viewCVModal"></QLNVSSV.Client.Components.ViewCVModal>
+</Spin>
+@code {
+
+}

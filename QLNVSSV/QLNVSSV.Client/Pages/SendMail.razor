@@ -1,0 +1,86 @@
+﻿@page "/sendmail"
+@inject NotificationService _notice
+
+<Spin Spinning="loading">
+    <h3>SendMail</h3>
+
+    <div class="header" style="display:flex;justify-content:space-between">
+        <button type="button" class="btn-sendmail btn btn-success" @onclick="Send">Gửi mail</button>
+        <NavLink type="button" class="btn-custommail btn btn-success" href="Mailcontent">Tạo nội dung mail</NavLink>
+    </div>
+    <table style="margin-top:20px" class="table">
+        <thead>
+            <tr>
+                <th>
+                    <input @onchange="CheckAll" id="allcheckbox" type="checkbox" />
+                </th>
+                <th scope="col">ID</th>
+                <th scope="col">Chức vụ</th>
+                <th scope="col">Vị Trí</th>
+                <th scope="col">Tên NV</th>
+                <th scope="col">SDT</th>
+                <th scope="col">Liên Hệ</th>
+                <th scope="col">Thời gian PV</th>
+                <th scope="col">Địa điểm PV</th>
+                <th scope="col">Hành động</th>
+            </tr>
+        </thead>
+        <tbody id="tablebody">
+            @foreach (var item in listEmployee)
+            {
+                <tr id="row_@item.EmployeeId">
+                    <td>
+                        <input checked="@(isSubCheck?"checked":null)" value="@item.EmployeeId" class="checktosendmail" type="checkbox" @onchange="eventArgs => { CheckboxClicked(item.EmployeeId, eventArgs.Value); }" />
+                    </td>
+                    <td scope="col">@item.EmployeeId</td>
+                    <td scope="col">@item.TitleName</td>
+                    <td scope="col">@item.PositionName</td>
+                    <td id="eName_@item.EmployeeId" scope="col">@item.EmployeeName</td>
+                    <td scope="col">@item.PhoneNumber</td>
+                    <td scope="col">
+                        <select class="form-control form-select" id="solidariry_@item.EmployeeId" @onchange="async(arg)=> {await ChangeSolidariry(arg,item.EmployeeId); }">
+                            @switch (item.Solidarity)
+                            {
+                                case 0:
+                                    <option selected="selected" value="0">Chưa liên hệ</option>
+                                    <option value="1">Đã liên hệ</option>
+                                    <option value="2">Không liên hệ được</option>
+                                    break;
+                                case 1:
+                                    <option value="0">Chưa liên hệ</option>
+                                    <option selected="selected" value="1">Đã liên hệ</option>
+                                    <option value="2">Không liên hệ được</option>
+                                    break;
+                                case 2:
+                                    <option value="0">Chưa liên hệ</option>
+                                    <option value="1">Đã liên hệ</option>
+                                    <option selected="selected" value="2">Không liên hệ được</option>
+                                    break;
+                            }
+
+                        </select>
+                    </td>
+                    <td scope="col">
+                        @{
+                            var time = item.InterviewTime.ToString("yyyy-MM-dd HH:mm:ss").Replace(' ', 'T');
+                            <div class="col-10">
+                                <input value="@time" class="form-control" type="datetime-local" id="time_id_@item.EmployeeId" @onchange="async(arg)=> {await ChangeInterviewTime(arg,item.EmployeeId); }">
+                            </div>
+                        }
+                    </td>
+                    <td scope="col">@item.InterviewAddress</td>
+                    <td scope="col">
+                        <button @onclick="async()=> { mailModal.TitleId = item.TitleId;mailModal.InterviewTime = item.InterviewTime;await mailModal.Show(); }" type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModalCenter">Preview</button>
+                        <button onclick="update(@item.EmployeeId)" type="button" class="btn btn-outline-success">Cập nhật</button>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <QLNVSSV.Client.Components.MailModal @ref="mailModal"></QLNVSSV.Client.Components.MailModal>
+</Spin>
+
+@code {
+
+}

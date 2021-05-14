@@ -1,0 +1,21 @@
+﻿@page "/Calendar"
+<h3>ScheduleCalendar</h3>
+
+<Calendar DateCellRender="DateCellRender">
+</Calendar>
+
+
+@code {
+    private DateTime date = DateTime.Now;   
+    private RenderFragment DateCellRender(DateTime dateTime)
+    {
+        date = dateTime;
+        return@<Template>
+        <ul class="events">
+            <li key="meoe">
+                <Badge Text="@date.ToString()" />
+            </li>
+        </ul>
+    </Template>;
+         }
+}

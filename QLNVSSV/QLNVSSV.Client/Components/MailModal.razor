@@ -1,0 +1,78 @@
+﻿
+
+<div class="modal fade @ModalClass" style="display:@DissplayModal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="()=>Close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalmail">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tiêu đề</label>
+                        <input  id="txttitle" type="email" class="form-control" aria-describedby="emailHelp" placeholder="" name="tieude" @bind="MailContent.Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Nội dung</label>
+                        <textarea id="txtcontent" class="form-control" name="noidung" cols="40" rows="5" @bind="content"></textarea>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button onclick="savechage()" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    public string ModalClass { get; set; }
+
+    public string DissplayModal { get; set; } = "none";
+
+    public int TitleId { get; set; }
+
+    public int employeeId { get; set; }
+
+    public QLNVSSV.Models.Modes.MailContent MailContent { get; set; } = new();
+
+    public DateTime InterviewTime { get; set; }
+    public string title { get; set; }
+    public string content { get; set; }
+
+    [Parameter]
+    public EventCallback Reload { get; set; }
+
+    public void Open()
+    {
+        DissplayModal = "block;";
+        ModalClass = "show";
+        StateHasChanged();
+    }
+    public void Close()
+    {
+        DissplayModal = "none";
+        ModalClass = "";
+        StateHasChanged();
+    }
+
+    public async Task Show()
+    {
+
+        var url = $"http://localhost:37919/api/MailContent/GetMailForemployee/{TitleId}";
+        MailContent = await ApiIntergration.GetData<QLNVSSV.Models.Modes.MailContent>.GetById(url);
+
+        content = MailContent.Content + "Thời gian phỏng vấn dự kiến bắt đầu vào khoảng" + InterviewTime;
+
+        Open();
+
+    }
+
+
+}

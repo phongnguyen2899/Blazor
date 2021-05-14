@@ -1,0 +1,118 @@
+﻿<style>
+
+
+    a {
+    }
+
+    body {
+    }
+
+
+
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+
+
+    .search {
+    }
+
+        .search input {
+        }
+
+        .search a {
+        }
+
+
+    .search_header {
+        display: flex;
+    }
+
+        .search_header .btn_search {
+            background-color: #4e92df;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            height: 100%;
+            margin: 0;
+            padding: 10px 20px;
+        }
+
+        .search_header input:first-child {
+            width: 200px;
+            margin-right: 10px;
+            outline: none;
+            padding-left: 10px;
+            border: 1px solid #4e92df;
+        }
+
+    .link_btn {
+        background-color: #4e92df;
+        font-size: 16px;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 2px;
+    }
+    .dowload {
+    }
+
+    .view:hover {
+        color: #2e7dd6;
+    }
+
+    .form-search {
+        display: flex;
+    }
+
+    .form-group {
+        margin-right: 20px;
+    }
+</style>
+
+<div style="height:200px;margin-top:20px;">
+    
+    <EditForm Model="model" OnSubmit="()=> { FilterAction(model); }">
+        <div class="form-search">
+            <div class="form-group">
+                <input @bind-value="model.EmployeeName" type="text" name="EmployeeName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập tên nhân viên">
+            </div>
+
+            <button style="height:38px;" type="submit" class="btn btn-success">Tìm kiếm nâng cao</button>
+        </div>
+        <br />
+        <div class="form-search">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Vị trí</label>
+                <select class="form-control" name="Position" @bind="model.Position">
+                    <option value="0">Chọn vị trí</option>
+                    @foreach (var item in listPosition)
+                    {
+                        <option value="@item.PositionId">@item.PositionName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Chức danh</label>
+                <select class="form-control" name="Title" @bind="model.Title">
+                    <option value="0">Chọn chức vụ</option>
+                    @foreach (var item in listTitle)
+                    {
+                        <option value="@item.TitleId">@item.TitleName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Tìm kiếm</button>
+        <button id="reset" type="button" class="btn btn-success">Đặt lại</button>
+    </EditForm>
+</div>
+@code {
+
+}

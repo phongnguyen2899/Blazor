@@ -1,0 +1,17 @@
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\QLNVSSV.Server.csprojAssemblyReference.cache
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\QLNVSSV.Server.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\QLNVSSV.Server.AssemblyInfoInputs.cache
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\QLNVSSV.Server.AssemblyInfo.cs
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\QLNVSSV.Server.csproj.CoreCompileInputs.cache
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\QLNVSSV.Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\QLNVSSV.Server.RazorComponent.input.cache
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\RazorDeclaration\Components\Pagination.razor.g.cs
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\RazorDeclaration\Components\Search.razor.g.cs
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Employee.razor.g.cs
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
+C:\Users\PhongNV\Documents\Phong\SSV\QLNVSSV\QLNVSSV\Server\obj\Debug\net5.0\QLNVSSV.Server.RazorComponent.output.cache

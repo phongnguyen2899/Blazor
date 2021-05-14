@@ -1,0 +1,80 @@
+﻿@using QLNVSSV.Models.Modes
+
+<div style="display:@ModalDisplay" class="modal fade @ModalClass" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div style="max-width:50% !important" class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"  @onclick="()=>Close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <EditForm Model="employee" OnSubmit="PostData" >
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Chức vụ</label>
+                            <select id="cb_position" class="form-control form-select" aria-label="Default select example" @bind="employee.TitleId">
+                                @if (listTitle != null)
+                                {
+                                    foreach (var item in listTitle)
+                                    {
+                                        <option value="@item.TitleId">@item.TitleName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Vị trí</label>
+                            <select id="cb_title" class="form-control form-select" aria-label="Default select example" @bind="employee.PositionId">
+                                @if (listPosition != null)
+                                {
+                                    foreach (var item in listPosition)
+                                    {
+                                        <option value="@item.PositionId">@item.PositionName</option>
+                                    }
+                                }
+
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Tên NV</label>
+                            <input id="txt_name" name="namee" type="text" class="form-control" aria-describedby="emailHelp" placeholder="" @bind-value="employee.EmployeeName">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Địa chỉ</label>
+                            <input id="txt_address" name="address" type="text" class="form-control" aria-describedby="emailHelp" placeholder="" @bind-value="employee.Address">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input id="txt_email" name="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" @bind-value="employee.Email">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">CV</label>
+                            <input id="ip_file" type="file" name="file"  />
+                            <InputFile OnChange="OnFileSelected"></InputFile>
+                            <label id="lb_file">@employee.CV</label>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="()=>Close()">Close</button>
+                        <input type="submit" class="btn btn-primary" />
+                    </div>
+                </EditForm>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
